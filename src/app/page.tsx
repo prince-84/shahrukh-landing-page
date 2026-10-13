@@ -120,10 +120,10 @@ export default function HomePage() {
       {/* MAIN HERO SECTION (EXACT REPLICA WITH HERO-IMG.WEBP) */}
       <main id="main-content" role="main">
         <section className="hero-wrapper" aria-label="Shahrukhz Residences Showcase">
-          {/* Hidden accessible H1 for SEO engines */}
-          <h1 className="sr-only">
+          {/* Accessible H2 for SEO engines */}
+          <h2 className="sr-only">
             Shahrukhz Residences by Danube — Fully Furnished Waterfront Residences in Dubai Maritime City Starting From AED 1.65M
-          </h1>
+          </h2>
 
           <div className="hero-img-container">
             <Image
@@ -141,22 +141,16 @@ export default function HomePage() {
         {/* SHAHRUKHZ RESIDENCES BY DANUBE SHOWCASE SECTION (EXACT REPLICA) */}
         <section className="danube-showcase-section" id="showcase" aria-labelledby="showcase-title">
           <div className="showcase-container">
-            <h2 id="showcase-title" className="showcase-main-title">
+            <h1 id="showcase-title" className="showcase-main-title">
               SHAHRUKHZ RESIDENCES BY DANUBE
-            </h2>
+            </h1>
 
             <p className="showcase-italic-tagline">
-              An iconic new landmark, set in Dubai Maritime City,
+              An iconic new address in Dubai Maritime City.
             </p>
 
             <p className="showcase-description">
-              SHAHRUKHZ by Danube brings breathtaking residences, uninterrupted ocean views and over
-              <br />
-              40 + world-class amenities to one address.
-              <br />
-              This is waterfront living imagined on a grand scale, designed for those who like to LIVE LIFE,
-              <br />
-              <strong>KING STYLE</strong>
+              Shahrukhz Residences by Danube offers beautiful homes, stunning ocean views, and more than 40 world-class amenities in one place. Designed for modern waterfront living, this project brings comfort, style, and convenience together for people who want to enjoy life in a special way.
             </p>
 
             <div>
@@ -177,7 +171,7 @@ export default function HomePage() {
                 </div>
                 <div className="spec-cell-info">
                   <span className="spec-cell-label">STARTING PRICE</span>
-                  <span className="spec-cell-value">AED 1.65 MILLION</span>
+                  <span className="spec-cell-value">AED 1.65 Million</span>
                 </div>
               </div>
 
@@ -194,7 +188,7 @@ export default function HomePage() {
                 </div>
                 <div className="spec-cell-info">
                   <span className="spec-cell-label">COMPLETION</span>
-                  <span className="spec-cell-value">Q4-2029</span>
+                  <span className="spec-cell-value">Q4 2029</span>
                 </div>
               </div>
 
@@ -210,7 +204,7 @@ export default function HomePage() {
                 </div>
                 <div className="spec-cell-info">
                   <span className="spec-cell-label">PAYMENT PLAN</span>
-                  <span className="spec-cell-value">30/70 PAYMENT PLAN</span>
+                  <span className="spec-cell-value">30/70 Payment Plan</span>
                 </div>
               </div>
 
@@ -230,7 +224,7 @@ export default function HomePage() {
                 </div>
                 <div className="spec-cell-info">
                   <span className="spec-cell-label">APARTMENTS</span>
-                  <span className="spec-cell-value">AVAILABLE ON REQUEST</span>
+                  <span className="spec-cell-value">Prices Available on Request</span>
                 </div>
               </div>
 
@@ -246,7 +240,7 @@ export default function HomePage() {
                 </div>
                 <div className="spec-cell-info">
                   <span className="spec-cell-label">BEDROOMS</span>
-                  <span className="spec-cell-value">STUDIO, 1 BEDROOM, 2 BEDROOM, 3 BEDROOM, PENTHOUSE</span>
+                  <span className="spec-cell-value">Studio, 1, 2, and 3-Bedroom Apartments, Penthouses</span>
                 </div>
               </div>
 
@@ -260,7 +254,7 @@ export default function HomePage() {
                 </div>
                 <div className="spec-cell-info">
                   <span className="spec-cell-label">LOCATION</span>
-                  <span className="spec-cell-value">DUBAI MARITIME CITY, DUBAI</span>
+                  <span className="spec-cell-value">Dubai Maritime City, Dubai</span>
                 </div>
               </div>
             </div>
@@ -290,13 +284,13 @@ export default function HomePage() {
                   </svg>
                 </div>
                 <div className="connectivity-text">
-                  2 MINS PORT<br />
+                  5 MINS PORT<br />
                   RASHID BOAT<br />
                   STATION
                 </div>
               </div>
 
-              {/* Item 2: 3 MINS DUBAI CRUISE TERMINAL 2 */}
+              {/* Item 2: 5 MINS DUBAI CRUISE TERMINAL 2 */}
               <div className="connectivity-cell">
                 <div className="connectivity-icon" aria-hidden="true">
                   <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -308,13 +302,13 @@ export default function HomePage() {
                   </svg>
                 </div>
                 <div className="connectivity-text">
-                  3 MINS DUBAI<br />
+                  5 MINS DUBAI<br />
                   CRUISE<br />
                   TERMINAL 2
                 </div>
               </div>
 
-              {/* Item 3: 8 MINS DUBAI WORLD TRADE CENTRE */}
+              {/* Item 3: 10 MINS DUBAI WORLD TRADE CENTRE */}
               <div className="connectivity-cell">
                 <div className="connectivity-icon" aria-hidden="true">
                   <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -330,13 +324,13 @@ export default function HomePage() {
                   </svg>
                 </div>
                 <div className="connectivity-text">
-                  8 MINS DUBAI<br />
+                  10 MINS DUBAI<br />
                   WORLD TRADE<br />
                   CENTRE
                 </div>
               </div>
 
-              {/* Item 4: 8 MINS JUMEIRAH BEACH */}
+              {/* Item 4: 10 MINS JUMEIRAH BEACH */}
               <div className="connectivity-cell">
                 <div className="connectivity-icon" aria-hidden="true">
                   <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -347,7 +341,7 @@ export default function HomePage() {
                   </svg>
                 </div>
                 <div className="connectivity-text">
-                  8 MINS JUMEIRAH<br />
+                  10 MINS JUMEIRAH<br />
                   BEACH
                 </div>
               </div>
@@ -453,19 +447,6 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-
-      {/* FLOATING CHAT BUTTON (EXACT MATCH FROM SCREENSHOT) */}
-      <a
-        href={`https://wa.me/${siteConfig.contact.whatsapp.replace(/[^0-9]/g, "")}?text=Hello,%20I%20am%20interested%20in%20Shahrukhz%20Residences`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="floating-chat-btn"
-        aria-label="Open Chat Assistance on WhatsApp"
-      >
-        <svg className="chat-icon" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
-        </svg>
-      </a>
 
       {/* FOOTER */}
       <Footer />

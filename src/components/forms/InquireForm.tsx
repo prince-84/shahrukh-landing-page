@@ -1,134 +1,84 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
 
-interface CountryInfo {
-  code: string;
+interface LeadPayload {
   name: string;
-  dial: string;
-  flag: string;
-}
-
-const COUNTRIES: CountryInfo[] = [
-  { code: "AE", name: "United Arab Emirates", dial: "+971", flag: "🇦🇪" },
-  { code: "PK", name: "Pakistan", dial: "+92", flag: "🇵🇰" },
-  { code: "IN", name: "India", dial: "+91", flag: "🇮🇳" },
-  { code: "SA", name: "Saudi Arabia", dial: "+966", flag: "🇸🇦" },
-  { code: "QA", name: "Qatar", dial: "+974", flag: "🇶🇦" },
-  { code: "KW", name: "Kuwait", dial: "+965", flag: "🇰🇼" },
-  { code: "OM", name: "Oman", dial: "+968", flag: "🇴🇲" },
-  { code: "BH", name: "Bahrain", dial: "+973", flag: "🇧🇭" },
-  { code: "GB", name: "United Kingdom", dial: "+44", flag: "🇬🇧" },
-  { code: "US", name: "United States", dial: "+1", flag: "🇺🇸" },
-  { code: "CA", name: "Canada", dial: "+1", flag: "🇨🇦" },
-  { code: "AU", name: "Australia", dial: "+61", flag: "🇦🇺" },
-  { code: "RU", name: "Russia", dial: "+7", flag: "🇷🇺" },
-  { code: "DE", name: "Germany", dial: "+49", flag: "🇩🇪" },
-  { code: "FR", name: "France", dial: "+33", flag: "🇫🇷" },
-  { code: "IT", name: "Italy", dial: "+39", flag: "🇮🇹" },
-  { code: "ES", name: "Spain", dial: "+34", flag: "🇪🇸" },
-  { code: "TR", name: "Turkey", dial: "+90", flag: "🇹🇷" },
-  { code: "EG", name: "Egypt", dial: "+20", flag: "🇪🇬" },
-  { code: "JO", name: "Jordan", dial: "+962", flag: "🇯🇴" },
-  { code: "LB", name: "Lebanon", dial: "+961", flag: "🇱🇧" },
-  { code: "BD", name: "Bangladesh", dial: "+880", flag: "🇧🇩" },
-  { code: "PH", name: "Philippines", dial: "+63", flag: "🇵🇭" },
-  { code: "ID", name: "Indonesia", dial: "+62", flag: "🇮🇩" },
-  { code: "MY", name: "Malaysia", dial: "+60", flag: "🇲🇾" },
-  { code: "SG", name: "Singapore", dial: "+65", flag: "🇸🇬" },
-  { code: "ZA", name: "South Africa", dial: "+27", flag: "🇿🇦" },
-  { code: "NG", name: "Nigeria", dial: "+234", flag: "🇳🇬" },
-  { code: "KE", name: "Kenya", dial: "+254", flag: "🇰🇪" },
-  { code: "CN", name: "China", dial: "+86", flag: "🇨🇳" },
-  { code: "JP", name: "Japan", dial: "+81", flag: "🇯🇵" },
-  { code: "KR", name: "South Korea", dial: "+82", flag: "🇰🇷" },
-  { code: "CH", name: "Switzerland", dial: "+41", flag: "🇨🇭" },
-  { code: "NL", name: "Netherlands", dial: "+31", flag: "🇳🇱" },
-  { code: "SE", name: "Sweden", dial: "+46", flag: "🇸🇪" },
-  { code: "NO", name: "Norway", dial: "+47", flag: "🇳🇴" },
-];
-
-function getFlagFromCode(code: string): string {
-  try {
-    const codePoints = code
-      .toUpperCase()
-      .split("")
-      .map((char) => 127397 + char.charCodeAt(0));
-    return String.fromCodePoint(...codePoints);
-  } catch {
-    return "🌐";
-  }
+  phone: string;
+  email: string;
+  source: string;
+  sub_source: string;
+  utm_campaign: string;
+  campaign_url: string;
+  project: string;
+  developer: string;
+  community: string;
+  property_type: string;
+  key_requirement: string;
+  activity_description: string;
 }
 
 export function InquireForm() {
-  const [selectedCountry, setSelectedCountry] = useState<CountryInfo>(COUNTRIES[0]);
-  const [isOpen, setIsOpen] = useState(false);
-  const [search, setSearch] = useState("");
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
+  const [formData, setFormData] = useState({ name: "", email: "" });
+  const [phone, setPhone] = useState("");
+  const [country, setCountry] = useState("ae");
+  const [hasInteractedWithPhone, setHasInteractedWithPhone] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Auto-detect user country location
+  const [tracking, setTracking] = useState({
+    source: "",
+    sub_source: "",
+    utm_campaign: "",
+    campaign_url: "",
+  });
+
+  // 1. Auto-detect user country location
   useEffect(() => {
-    let detectedCode = "";
+    let detectedIso = "";
 
-    // Step 1: Fast synchronous fallback via timezone
+    // Fast heuristic via client timezone
     try {
-      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      if (tz.includes("Karachi")) detectedCode = "PK";
-      else if (tz.includes("Dubai")) detectedCode = "AE";
-      else if (tz.includes("Kolkata")) detectedCode = "IN";
-      else if (tz.includes("Riyadh")) detectedCode = "SA";
-      else if (tz.includes("London")) detectedCode = "GB";
-      else if (tz.includes("New_York") || tz.includes("Chicago") || tz.includes("Los_Angeles")) detectedCode = "US";
-    } catch {
-      // ignore
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone.toLowerCase();
+      if (tz.includes("karachi")) detectedIso = "pk";
+      else if (tz.includes("dubai") || tz.includes("muscat") || tz.includes("gulf")) detectedIso = "ae";
+      else if (tz.includes("kolkata")) detectedIso = "in";
+      else if (tz.includes("riyadh")) detectedIso = "sa";
+      else if (tz.includes("london")) detectedIso = "gb";
+      else if (tz.includes("qatar")) detectedIso = "qa";
+      else if (tz.includes("kuwait")) detectedIso = "kw";
+      else if (tz.includes("bahrain")) detectedIso = "bh";
+      else if (tz.includes("new_york") || tz.includes("los_angeles") || tz.includes("chicago")) detectedIso = "us";
+      else if (tz.includes("toronto") || tz.includes("vancouver")) detectedIso = "ca";
+      else if (tz.includes("moscow")) detectedIso = "ru";
+    } catch {}
+
+    if (detectedIso && !hasInteractedWithPhone) {
+      setCountry(detectedIso);
     }
 
-    if (detectedCode) {
-      const match = COUNTRIES.find((c) => c.code === detectedCode);
-      if (match) setSelectedCountry(match);
-    }
-
-    // Step 2: Accurate client IP geolocation
+    // High-accuracy Geo IP detection
     const controller = new AbortController();
     fetch("https://api.country.is/", { signal: controller.signal })
       .then((res) => res.json())
       .then((data) => {
-        if (data && data.country) {
-          const code = String(data.country).toUpperCase();
-          const match = COUNTRIES.find((c) => c.code === code);
-          if (match) {
-            setSelectedCountry(match);
-          } else {
-            // Dynamic country not in list
-            setSelectedCountry({
-              code,
-              name: code,
-              dial: "+",
-              flag: getFlagFromCode(code),
-            });
+        if (data && data.country && typeof data.country === "string") {
+          const iso = data.country.toLowerCase();
+          if (!hasInteractedWithPhone) {
+            setCountry(iso);
           }
         }
       })
       .catch(() => {
-        // Fallback to secondary geo service
         fetch("https://ipwho.is/", { signal: controller.signal })
           .then((r) => r.json())
           .then((d) => {
-            if (d && d.country_code) {
-              const code = String(d.country_code).toUpperCase();
-              const match = COUNTRIES.find((c) => c.code === code);
-              if (match) {
-                setSelectedCountry(match);
-              } else {
-                setSelectedCountry({
-                  code,
-                  name: d.country || code,
-                  dial: d.calling_code ? `+${d.calling_code}` : "+",
-                  flag: getFlagFromCode(code),
-                });
+            if (d && d.country_code && typeof d.country_code === "string") {
+              const iso = d.country_code.toLowerCase();
+              if (!hasInteractedWithPhone) {
+                setCountry(iso);
               }
             }
           })
@@ -136,33 +86,79 @@ export function InquireForm() {
       });
 
     return () => controller.abort();
-  }, []);
+  }, [hasInteractedWithPhone]);
 
-  // Close dropdown on outside click
+  // 2. Capture URL tracking & campaign parameters
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const utmSource = params.get("utm_source") || params.get("source") || "";
+      const utmMedium = params.get("utm_medium") || params.get("sub_source") || "";
+      const utmCampaign = params.get("utm_campaign") || params.get("campaign") || "";
+
+      let source = utmSource;
+      if (!source) {
+        if (document.referrer) {
+          try {
+            source = new URL(document.referrer).hostname;
+          } catch {
+            source = "Referral";
+          }
+        } else {
+          source = "Website Direct";
+        }
       }
+
+      const subSource = utmMedium || "Organic";
+
+      setTracking({
+        source,
+        sub_source: subSource,
+        utm_campaign: utmCampaign,
+        campaign_url: window.location.href,
+      });
     }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const filteredCountries = COUNTRIES.filter(
-    (c) =>
-      c.name.toLowerCase().includes(search.toLowerCase()) ||
-      c.dial.includes(search) ||
-      c.code.toLowerCase().includes(search.toLowerCase())
-  );
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
+
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+
+    const payload: LeadPayload = {
+      name: formData.name.trim(),
+      phone: phone.trim(),
+      email: formData.email.trim(),
+      source: tracking.source || "Website Direct",
+      sub_source: tracking.sub_source || "Organic",
+      utm_campaign: tracking.utm_campaign || "",
+      campaign_url: tracking.campaign_url || (typeof window !== "undefined" ? window.location.href : ""),
+      project: "Shahrukhz Residences by Danube",
+      developer: "Danube Properties",
+      community: "Dubai Maritime City",
+      property_type: "Apartments & Penthouses",
+      key_requirement: "Waterfront Luxury Residences",
+      activity_description: "New lead submitted via website inquiry form",
+    };
+
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        console.warn("Lead route warning:", res.status);
+      }
       setIsSubmitted(true);
-    }, 800);
+    } catch (err) {
+      console.error("Submission error:", err);
+      setIsSubmitted(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSubmitted) {
@@ -175,13 +171,14 @@ export function InquireForm() {
         </div>
         <h3 className="success-title">THANK YOU, {formData.name.toUpperCase()}!</h3>
         <p className="success-desc">
-          Your inquiry has been received. Our luxury property specialist will reach out to you at <strong>{selectedCountry.dial} {formData.phone}</strong> shortly.
+          Your inquiry has been received. Our luxury property specialist will reach out to you at <strong>{phone}</strong> shortly.
         </p>
         <button
           type="button"
           onClick={() => {
             setIsSubmitted(false);
-            setFormData({ name: "", email: "", phone: "" });
+            setFormData({ name: "", email: "" });
+            setPhone("");
           }}
           className="btn-connect-submit"
           style={{ marginTop: "16px" }}
@@ -220,79 +217,25 @@ export function InquireForm() {
         aria-label="Email Address"
       />
 
-      {/* 3. Phone with Auto-detected Country Flag & Dial Code */}
-      <div className="connect-phone-group" ref={dropdownRef}>
-        <button
-          type="button"
-          onClick={() => setIsOpen(!isOpen)}
-          className="connect-phone-prefix-btn"
-          aria-label={`Selected country: ${selectedCountry.name} (${selectedCountry.dial}). Click to change.`}
-          aria-expanded={isOpen}
-        >
-          <span className="country-flag-emoji" aria-hidden="true">{selectedCountry.flag}</span>
-          <span className="country-code-text">{selectedCountry.dial}</span>
-          <svg
-            width="8"
-            height="5"
-            viewBox="0 0 10 6"
-            fill="currentColor"
-            aria-hidden="true"
-            className={`phone-chevron ${isOpen ? "open" : ""}`}
-          >
-            <path d="M0 0l5 5 5-5z" />
-          </svg>
-        </button>
-
-        <input
-          type="tel"
-          name="phone"
+      {/* 3. Phone with react-international-phone with auto-detected country & flags */}
+      <div className="connect-intl-phone-container">
+        <PhoneInput
+          key={country}
+          defaultCountry={country}
+          value={phone}
+          onChange={(newPhone) => {
+            setHasInteractedWithPhone(true);
+            setPhone(newPhone);
+          }}
+          preferredCountries={["ae", "sa", "qa", "kw", "om", "bh", "pk", "in", "gb", "us", "ru"]}
           placeholder="Phone Number*"
-          required
-          autoComplete="tel"
-          value={formData.phone}
-          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-          className="connect-input phone-input"
-          aria-label="Phone Number"
+          inputProps={{
+            name: "phone",
+            autoComplete: "tel",
+            "aria-label": "Phone Number",
+            required: true,
+          }}
         />
-
-        {/* Dropdown Menu */}
-        {isOpen && (
-          <div className="country-dropdown-menu" role="listbox">
-            <div className="country-search-wrap">
-              <input
-                type="text"
-                placeholder="Search country or code..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="country-search-input"
-                autoFocus
-              />
-            </div>
-            <div className="country-list-scroll">
-              {filteredCountries.map((c) => (
-                <button
-                  key={c.code}
-                  type="button"
-                  onClick={() => {
-                    setSelectedCountry(c);
-                    setIsOpen(false);
-                    setSearch("");
-                  }}
-                  className={`country-item-btn ${selectedCountry.code === c.code ? "selected" : ""}`}
-                  role="option"
-                  aria-selected={selectedCountry.code === c.code}
-                >
-                  <span className="country-item-flag">{c.flag}</span>
-                  <span className="country-item-name">{c.name}</span>
-                  <span className="country-item-dial">{c.dial}</span>
-                </button>
-              ))}
-              {filteredCountries.length === 0 && (
-                <div className="country-no-result">No country found</div>
-              )}
-            </div>
-          </div>
-        )}
       </div>
 
       {/* Terms & Conditions Checkbox */}
@@ -317,4 +260,5 @@ export function InquireForm() {
     </form>
   );
 }
+
 export default InquireForm;

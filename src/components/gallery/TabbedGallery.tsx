@@ -54,6 +54,9 @@ const galleryItems: GalleryItem[] = [
 
 export function TabbedGallery() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const touchStartX = React.useRef<number | null>(null);
+  const touchStartY = React.useRef<number | null>(null);
+
   const activeItem = galleryItems[activeIndex];
 
   const handleNext = () => {
@@ -62,6 +65,42 @@ export function TabbedGallery() {
 
   const handlePrev = () => {
     setActiveIndex((prev) => (prev - 1 + galleryItems.length) % galleryItems.length);
+  };
+
+  const handleSelectTab = (index: number) => {
+    setActiveIndex(index);
+  };
+
+  // Keyboard navigation
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowRight") {
+      handleNext();
+    } else if (e.key === "ArrowLeft") {
+      handlePrev();
+    }
+  };
+
+  // Touch swipe support for mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null || touchStartY.current === null) return;
+    const diffX = touchStartX.current - e.changedTouches[0].clientX;
+    const diffY = touchStartY.current - e.changedTouches[0].clientY;
+
+    // Only trigger horizontal swipe if movement is primarily horizontal and > 40px
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
+      if (diffX > 0) {
+        handleNext(); // swipe left -> next
+      } else {
+        handlePrev(); // swipe right -> prev
+      }
+    }
+    touchStartX.current = null;
+    touchStartY.current = null;
   };
 
   return (
@@ -82,13 +121,14 @@ export function TabbedGallery() {
               return (
                 <button
                   key={item.id}
+                  type="button"
                   role="tab"
                   aria-selected={isActive}
                   aria-controls={`gallery-panel-${item.id}`}
                   id={`gallery-tab-${item.id}`}
-                  tabIndex={isActive ? 0 : -1}
+                  tabIndex={0}
                   className={`gallery-tab-btn ${isActive ? "active" : ""}`}
-                  onClick={() => setActiveIndex(index)}
+                  onClick={() => handleSelectTab(index)}
                 >
                   <span className="tab-dot" aria-hidden="true" />
                   {item.tabLabel}
@@ -104,9 +144,15 @@ export function TabbedGallery() {
           id={`gallery-panel-${activeItem.id}`}
           role="tabpanel"
           aria-labelledby={`gallery-tab-${activeItem.id}`}
+          tabIndex={0}
+          onKeyDown={handleKeyDown}
         >
-          {/* Main Visual with Smooth Fade Transitions */}
-          <div className="gallery-image-viewport">
+          {/* Main Visual with Smooth Fade Transitions & Touch Swipe */}
+          <div
+            className="gallery-image-viewport"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
             {galleryItems.map((item, index) => {
               const isActive = index === activeIndex;
               return (
@@ -120,7 +166,7 @@ export function TabbedGallery() {
                     alt={item.alt}
                     width={1920}
                     height={1080}
-                    priority={index === 0}
+                    priority={index === 0 || index === activeIndex}
                     sizes="(max-width: 1200px) 100vw, 1200px"
                     className="gallery-img"
                   />
@@ -146,7 +192,11 @@ export function TabbedGallery() {
 
             {/* Navigation Arrows */}
             <button
-              onClick={handlePrev}
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                handlePrev();
+              }}
               className="gallery-nav-arrow arrow-left"
               aria-label="Previous Perspective"
             >
@@ -155,7 +205,11 @@ export function TabbedGallery() {
               </svg>
             </button>
             <button
-              onClick={handleNext}
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleNext();
+              }}
               className="gallery-nav-arrow arrow-right"
               aria-label="Next Perspective"
             >
@@ -172,8 +226,9 @@ export function TabbedGallery() {
               return (
                 <button
                   key={`thumb-${item.id}`}
+                  type="button"
                   className={`gallery-thumb-item ${isActive ? "active-thumb" : ""}`}
-                  onClick={() => setActiveIndex(index)}
+                  onClick={() => handleSelectTab(index)}
                   aria-label={`Switch to ${item.tabLabel}`}
                 >
                   <div className="thumb-img-wrap">

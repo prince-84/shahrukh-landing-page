@@ -99,7 +99,7 @@ export default function PrivacyPolicyPage() {
               <ul className="legal-list">
                 <li>Submit an enquiry through our website.</li>
                 <li>Request information about properties, projects, or real estate services.</li>
-                <li>Contact us through phone, email, WhatsApp, social media, or other digital channels.</li>
+                <li>Contact us through phone, email, social media, or other digital channels.</li>
                 <li>Subscribe to property updates, newsletters, or other communications.</li>
               </ul>
               <h3 style={{ fontSize: "1.05rem", fontWeight: 700, color: "#1e293b", margin: "16px 0 8px" }}>

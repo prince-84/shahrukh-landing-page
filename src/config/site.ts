@@ -65,7 +65,7 @@ export const siteConfig = {
     youtube: "https://youtube.com/DanubeProperties",
   },
   verification: {
-    google: "G-VERIFICATION_TOKEN_PLACEHOLDER",
+    google: "BqLKEkx3puc4IcF1kX5ygK25ct4wlyVHhzEe6cuUWFE",
     yandex: "YANDEX_VERIFICATION_TOKEN_PLACEHOLDER",
     bing: "BING_VERIFICATION_TOKEN_PLACEHOLDER",
   },

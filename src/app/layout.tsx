@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Plus_Jakarta_Sans, Cinzel } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
     default: "Shahrukhz Residences by Danube Waterfront Apartment in Dubai",
-    template: `%s | ${siteConfig.name}`,
+    template: "%s",
   },
   description:
     "Discover Shahrukhz Residences by Danube in Dubai Maritime City, starting at AED 1.65M. Explore studios, apartments and penthouses with a 30/70 payment plan and Q4 2029 completion.",
@@ -140,10 +141,27 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${sansFont.variable} ${luxuryFont.variable}`}>
       <head>
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-WDQ46CDTYF"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-WDQ46CDTYF');
+          `}
+        </Script>
+
         {/* Preconnect to improve resource load speed for Google Fonts and CDNs */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
+
+        {/* Google Site Verification */}
+        <meta name="google-site-verification" content="BqLKEkx3puc4IcF1kX5ygK25ct4wlyVHhzEe6cuUWFE" />
 
         {/* Favicon */}
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
