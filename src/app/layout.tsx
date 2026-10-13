@@ -1,10 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Cinzel } from "next/font/google";
 import { siteConfig } from "@/config/site";
-import { OrganizationJsonLd } from "@/components/seo/OrganizationJsonLd";
-import { PropertyJsonLd } from "@/components/seo/PropertyJsonLd";
-import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
-import { WebSiteJsonLd } from "@/components/seo/WebSiteJsonLd";
 import "./globals.css";
 
 const sansFont = Plus_Jakarta_Sans({
@@ -76,6 +72,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
+    alternateLocale: "ar_AE",
     url: siteConfig.url,
     title: "Shahrukhz Residences by Danube Waterfront Apartment in Dubai",
     description:
@@ -83,11 +80,11 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: "/images/hero-img.webp",
+        url: "/images/logo.jpg",
         width: 1200,
         height: 630,
         alt: `${siteConfig.name} Waterfront Living by Danube Properties`,
-        type: "image/webp",
+        type: "image/jpeg",
       },
     ],
   },
@@ -98,19 +95,22 @@ export const metadata: Metadata = {
       "Discover Shahrukhz Residences by Danube in Dubai Maritime City, starting at AED 1.65M. Explore studios, apartments and penthouses with a 30/70 payment plan and Q4 2029 completion.",
     site: "@DanubeProperties",
     creator: "@DanubeProperties",
-    images: ["/images/hero-img.webp"],
+    images: [
+      {
+        url: `${siteConfig.url}/images/logo.jpg`,
+        alt: `${siteConfig.name} Waterfront Living by Danube Properties`,
+      },
+    ],
   },
   robots: {
     index: true,
     follow: true,
-    nocache: false,
+    "max-snippet": -1,
+    "max-video-preview": -1,
+    "max-image-preview": "large",
     googleBot: {
       index: true,
       follow: true,
-      noimageindex: false,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
     },
   },
   verification: {
@@ -121,6 +121,7 @@ export const metadata: Metadata = {
     },
   },
   other: {
+    "twitter:url": siteConfig.url,
     "geo.region": "AE-DU",
     "geo.placename": "Dubai",
     "geo.position": `${siteConfig.contact.geo.latitude};${siteConfig.contact.geo.longitude}`,
@@ -143,19 +144,6 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
-        {/* Canonical link */}
-        <link rel="canonical" href={siteConfig.url} />
-
-        {/* Search Engine Robots & Crawling Directives */}
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-        <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-        <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-
-        {/* Global Structured Data Schemas */}
-        <WebSiteJsonLd />
-        <OrganizationJsonLd />
-        <PropertyJsonLd />
-        <BreadcrumbJsonLd />
 
         {/* Favicon */}
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

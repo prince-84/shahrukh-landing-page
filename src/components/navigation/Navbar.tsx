@@ -62,8 +62,6 @@ export function Navbar() {
             </svg>
             WHATSAPP
           </a>
-
-          <span className="lang-selector">EN</span>
         </div>
       </div>
     </header>

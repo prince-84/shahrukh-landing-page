@@ -14,10 +14,18 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    "max-snippet": -1,
+    "max-video-preview": -1,
+    "max-image-preview": "large",
+    googleBot: {
+      index: true,
+      follow: true,
+    },
   },
   openGraph: {
     type: "website",
     locale: "en_US",
+    alternateLocale: "ar_AE",
     url: `${siteConfig.url}/terms-and-conditions`,
     title: "Terms & Conditions | shahrukhz-residence.com",
     description:
@@ -25,7 +33,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: "/images/hero-img.webp",
+        url: "/images/logo.jpg",
         width: 1200,
         height: 630,
         alt: "Shahrukhz Residences Terms & Conditions",
@@ -39,7 +47,15 @@ export const metadata: Metadata = {
       "Read our Terms & Conditions to understand the rules, responsibilities, and terms of using our website and accessing property information.",
     site: "@DanubeProperties",
     creator: "@DanubeProperties",
-    images: ["/images/hero-img.webp"],
+    images: [
+      {
+        url: `${siteConfig.url}/images/logo.jpg`,
+        alt: "Shahrukhz Residences Terms & Conditions",
+      },
+    ],
+  },
+  other: {
+    "twitter:url": `${siteConfig.url}/terms-and-conditions`,
   },
 };
 

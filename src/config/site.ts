@@ -6,7 +6,7 @@ export const siteConfig = {
   description:
     "Discover Shahrukhz Residences by Danube in Dubai Maritime City, starting at AED 1.65M. Explore studios, apartments and penthouses with a 30/70 payment plan and Q4 2029 completion.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://shahrukhz-residence.com",
-  ogImage: "/images/hero-img.webp",
+  ogImage: "/images/logo.jpg",
   developer: {
     name: "Danube Properties",
     url: "https://danubeproperties.com",

@@ -15,10 +15,18 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    "max-snippet": -1,
+    "max-video-preview": -1,
+    "max-image-preview": "large",
+    googleBot: {
+      index: true,
+      follow: true,
+    },
   },
   openGraph: {
     type: "website",
     locale: "en_US",
+    alternateLocale: "ar_AE",
     url: `${siteConfig.url}/prices`,
     title: "Shahrukhz Residences Prices in Dubai | Danube Properties",
     description:
@@ -26,7 +34,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: "/images/hero-img.webp",
+        url: "/images/logo.jpg",
         width: 1200,
         height: 630,
         alt: "Shahrukhz Residences Prices in Dubai Maritime City",
@@ -40,7 +48,15 @@ export const metadata: Metadata = {
       "Explore Shahrukhz Residences prices starting from AED 1.65 million in Dubai Maritime City. Check apartment types and investment opportunities.",
     site: "@DanubeProperties",
     creator: "@DanubeProperties",
-    images: ["/images/hero-img.webp"],
+    images: [
+      {
+        url: `${siteConfig.url}/images/logo.jpg`,
+        alt: "Shahrukhz Residences Prices in Dubai Maritime City",
+      },
+    ],
+  },
+  other: {
+    "twitter:url": `${siteConfig.url}/prices`,
   },
 };
 

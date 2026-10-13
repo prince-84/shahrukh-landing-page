@@ -3,12 +3,14 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { siteConfig } from "@/config/site";
 import { FaqJsonLd } from "@/components/seo/FaqJsonLd";
+import { HomePageSchema } from "@/components/seo/HomePageSchema";
 import { TabbedGallery } from "@/components/gallery/TabbedGallery";
 import { AmenitiesSlider } from "@/components/amenities/AmenitiesSlider";
 import { MediaImageGallery } from "@/components/gallery/MediaImageGallery";
 import { VideoSeparator } from "@/components/video/VideoSeparator";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/footer/Footer";
+import { InquireForm } from "@/components/forms/InquireForm";
 
 export const metadata: Metadata = {
   title: "Shahrukhz Residences by Danube Waterfront Apartment in Dubai",
@@ -20,10 +22,18 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    "max-snippet": -1,
+    "max-video-preview": -1,
+    "max-image-preview": "large",
+    googleBot: {
+      index: true,
+      follow: true,
+    },
   },
   openGraph: {
     type: "website",
     locale: "en_US",
+    alternateLocale: "ar_AE",
     url: `${siteConfig.url}/`,
     title: "Shahrukhz Residences by Danube Waterfront Apartment in Dubai",
     description:
@@ -31,7 +41,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: "/images/hero-img.webp",
+        url: "/images/logo.jpg",
         width: 1200,
         height: 630,
         alt: "Shahrukhz Residences by Danube Waterfront Luxury Apartment",
@@ -45,7 +55,15 @@ export const metadata: Metadata = {
       "Discover Shahrukhz Residences by Danube in Dubai Maritime City, starting at AED 1.65M. Explore studios, apartments and penthouses with a 30/70 payment plan and Q4 2029 completion.",
     site: "@DanubeProperties",
     creator: "@DanubeProperties",
-    images: ["/images/hero-img.webp"],
+    images: [
+      {
+        url: `${siteConfig.url}/images/logo.jpg`,
+        alt: "Shahrukhz Residences by Danube Waterfront Luxury Apartment",
+      },
+    ],
+  },
+  other: {
+    "twitter:url": `${siteConfig.url}/`,
   },
 };
 
@@ -90,6 +108,9 @@ const faqs = [
 export default function HomePage() {
   return (
     <>
+      {/* Website & Organization Schema (Homepage Only) */}
+      <HomePageSchema />
+
       {/* FAQ Schema for Google Search Rich Results */}
       <FaqJsonLd faqs={faqs} />
 
@@ -106,7 +127,7 @@ export default function HomePage() {
 
           <div className="hero-img-container">
             <Image
-              src="/images/hero-img.webp"
+              src="/images/logo.jpg"
               alt="Shahrukhz Residences by Danube - Dubai Maritime City Fully Furnished Waterfront Residences Starting From AED 1.65M"
               width={1920}
               height={1080}
@@ -426,129 +447,7 @@ export default function HomePage() {
 
               {/* Right Column: Form Card */}
               <div className="connect-form-card">
-                <form className="connect-form" action="#" method="POST" aria-label="Connect Inquiry Form">
-                  {/* First Name & Last Name */}
-                  <div className="connect-form-row-2">
-                    <input
-                      type="text"
-                      name="firstName"
-                      placeholder="First Name*"
-                      required
-                      autoComplete="given-name"
-                      className="connect-input"
-                    />
-                    <input
-                      type="text"
-                      name="lastName"
-                      placeholder="Last Name*"
-                      required
-                      autoComplete="family-name"
-                      className="connect-input"
-                    />
-                  </div>
-
-                  {/* Phone with UAE Flag Prefix */}
-                  <div className="connect-phone-group">
-                    <div className="connect-phone-prefix" aria-label="United Arab Emirates Country Code">
-                      <span className="uae-flag" aria-hidden="true">🇦🇪</span>
-                      <span className="country-code">+971</span>
-                      <svg width="8" height="5" viewBox="0 0 10 6" fill="currentColor" aria-hidden="true">
-                        <path d="M0 0l5 5 5-5z" />
-                      </svg>
-                    </div>
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="Phone Number*"
-                      required
-                      autoComplete="tel"
-                      className="connect-input phone-input"
-                    />
-                  </div>
-
-                  {/* Email Address */}
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email*"
-                    required
-                    autoComplete="email"
-                    className="connect-input"
-                  />
-
-                  {/* Budget Dropdown */}
-                  <div className="connect-select-wrap">
-                    <select name="budget" defaultValue="" required className="connect-select">
-                      <option value="" disabled>Select a Budget*</option>
-                      <option value="1.65m-2.5m">AED 1.65M - 2.5M</option>
-                      <option value="2.5m-3.5m">AED 2.5M - 3.5M</option>
-                      <option value="3.5m-5m">AED 3.5M - 5M</option>
-                      <option value="5m+">AED 5M+</option>
-                    </select>
-                  </div>
-
-                  {/* Unit Type Dropdown */}
-                  <div className="connect-select-wrap">
-                    <select name="unitType" defaultValue="" required className="connect-select">
-                      <option value="" disabled>Select Unit Type*</option>
-                      <option value="1-bed">1 Bedroom Luxury Suite</option>
-                      <option value="2-bed">2 Bedroom Waterfront Residence</option>
-                      <option value="3-bed">3 Bedroom Executive Residence</option>
-                      <option value="penthouse">Sky Penthouse with Private Pool</option>
-                    </select>
-                  </div>
-
-                  {/* Purchase Timeline Dropdown */}
-                  <div className="connect-select-wrap">
-                    <select name="timeline" defaultValue="" required className="connect-select">
-                      <option value="" disabled>Purchase Timeline*</option>
-                      <option value="immediate">Immediate (Within 30 Days)</option>
-                      <option value="1-3-months">1 - 3 Months</option>
-                      <option value="3-6-months">3 - 6 Months</option>
-                      <option value="exploring">Exploring Options</option>
-                    </select>
-                  </div>
-
-                  {/* Cloudflare Turnstile Verified Badge */}
-                  <div className="connect-turnstile-badge" aria-label="Security check verified by Cloudflare Turnstile">
-                    <div className="turnstile-status">
-                      <span className="turnstile-check" aria-hidden="true">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                          <polyline points="20 6 9 17 4 12" />
-                        </svg>
-                      </span>
-                      <span className="turnstile-text">Success!</span>
-                    </div>
-                    <div className="turnstile-brand">
-                      <div className="turnstile-logo">
-                        <svg width="22" height="13" viewBox="0 0 48 28" fill="#f6821f" aria-hidden="true">
-                          <path d="M38.4 12.2C37.8 7.4 33.7 3.7 28.7 3.7c-3.6 0-6.8 1.9-8.5 4.9C19.3 8.3 18.2 8 17.1 8c-4.4 0-8 3.6-8 8 0 .4 0 .9.1 1.3C4.1 17.7 0 21.8 0 26.9c0 .4 0 .8.1 1.1h42.7c2.9 0 5.2-2.3 5.2-5.2 0-4.8-3.7-8.8-8.6-9.6z" />
-                        </svg>
-                        <span className="turnstile-brand-name">CLOUDFLARE</span>
-                      </div>
-                      <span className="turnstile-links">Privacy • Help</span>
-                    </div>
-                  </div>
-
-                  {/* Terms & Conditions Checkbox */}
-                  <label className="connect-terms-label">
-                    <input
-                      type="checkbox"
-                      name="terms"
-                      defaultChecked
-                      required
-                      className="connect-checkbox"
-                    />
-                    <span>
-                      I agree to be contacted by Danube Properties and accept the <a href="#terms">Terms &amp; Conditions</a>.
-                    </span>
-                  </label>
-
-                  {/* Submit Button */}
-                  <button type="submit" className="btn-connect-submit">
-                    SUBMIT
-                  </button>
-                </form>
+                <InquireForm />
               </div>
             </div>
           </div>

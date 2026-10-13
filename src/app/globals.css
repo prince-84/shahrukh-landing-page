@@ -223,12 +223,6 @@ img {
   filter: brightness(1.08);
 }
 
-.lang-selector {
-  color: #ffffff;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
 
 /* HERO SECTION - EXACT COPY WITH HERO-IMG */
 .hero-wrapper {
@@ -2461,12 +2455,14 @@ img {
 
 .connect-left-col {
   color: #ffffff;
+  font-family: var(--font-body);
 }
 
 .connect-eyebrow {
   display: flex;
   align-items: center;
   gap: 8px;
+  font-family: var(--font-body);
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.22em;
@@ -2482,11 +2478,12 @@ img {
 }
 
 .connect-title {
-  font-family: var(--font-heading);
+  font-family: var(--font-body);
   font-size: clamp(2.2rem, 3.8vw, 3.4rem);
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.01em;
+  text-transform: uppercase;
   color: #ffffff;
   margin: 0 0 22px 0;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.4);
@@ -2497,6 +2494,7 @@ img {
 }
 
 .connect-desc {
+  font-family: var(--font-body);
   font-size: 0.98rem;
   line-height: 1.65;
   color: #e2e8f0;
@@ -2551,6 +2549,7 @@ img {
 }
 
 .connect-phone-group {
+  position: relative;
   display: flex;
   align-items: center;
   border: 1px solid #dcdfe4;
@@ -2564,26 +2563,166 @@ img {
   box-shadow: 0 0 0 2px rgba(186, 160, 126, 0.18);
 }
 
-.connect-phone-prefix {
+.connect-phone-prefix-btn {
   display: flex;
   align-items: center;
   gap: 6px;
   padding: 0 12px;
   background-color: #f8fafc;
+  border: none;
   border-right: 1px solid #dcdfe4;
   font-size: 0.86rem;
   color: #334155;
   height: 46px;
+  cursor: pointer;
+  transition: background-color 0.2s;
   user-select: none;
 }
 
-.uae-flag {
+.connect-phone-prefix-btn:hover {
+  background-color: #f1f5f9;
+}
+
+.country-flag-emoji {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.country-code-text {
+  font-weight: 600;
+  font-size: 0.84rem;
+  color: #1e293b;
+}
+
+.phone-chevron {
+  transition: transform 0.2s;
+  color: #64748b;
+  margin-left: 2px;
+}
+
+.phone-chevron.open {
+  transform: rotate(180deg);
+}
+
+.country-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 290px;
+  max-width: 90vw;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  z-index: 50;
+  overflow: hidden;
+}
+
+.country-search-wrap {
+  padding: 8px;
+  border-bottom: 1px solid #e2e8f0;
+  background-color: #f8fafc;
+}
+
+.country-search-input {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 0.82rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 3px;
+  outline: none;
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.country-search-input:focus {
+  border-color: #baa07e;
+}
+
+.country-list-scroll {
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.country-item-btn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 9px 12px;
+  font-size: 0.84rem;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.15s;
+  color: #1e293b;
+  gap: 8px;
+}
+
+.country-item-btn:hover {
+  background-color: #f1f5f9;
+}
+
+.country-item-btn.selected {
+  background-color: #fdf8f0;
+  font-weight: 600;
+}
+
+.country-item-flag {
   font-size: 1.1rem;
 }
 
-.country-code {
-  font-weight: 500;
+.country-item-name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.country-item-dial {
+  font-weight: 600;
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+.country-no-result {
+  padding: 16px;
+  text-align: center;
+  color: #94a3b8;
   font-size: 0.84rem;
+}
+
+.connect-form-success {
+  text-align: center;
+  padding: 30px 10px;
+}
+
+.success-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: #ecfdf5;
+  color: #10b981;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.success-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.success-desc {
+  font-size: 0.92rem;
+  color: #475569;
+  line-height: 1.6;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .connect-input.phone-input {

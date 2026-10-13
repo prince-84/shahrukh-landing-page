@@ -11,33 +11,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "daily",
       priority: 1.0,
-      images: [
-        `${baseUrl}/images/hero-img.webp`,
-        `${baseUrl}/images/shahrukhz-residences-by-danube-waterfront-development.webp`,
-        `${baseUrl}/images/shahrukhz-residences-by-danube-kings-suite.webp`,
-        `${baseUrl}/images/shahrukhz-residences-by-danube-living-room.webp`,
-        `${baseUrl}/images/shahrukhz-residences-by-danube-penthouse.webp`,
-        `${baseUrl}/images/infinity_pool-2.webp`,
-        `${baseUrl}/images/shahrukhz-residences-by-danube-beach-lagoon.webp`,
-      ],
     },
     {
       url: `${baseUrl}/prices`,
       lastModified,
       changeFrequency: "weekly",
-      priority: 0.95,
-      images: [
-        `${baseUrl}/images/hero-img.webp`,
-      ],
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/payment-plan`,
       lastModified,
       changeFrequency: "weekly",
-      priority: 0.95,
-      images: [
-        `${baseUrl}/images/hero-img.webp`,
-      ],
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/disclaimer`,
