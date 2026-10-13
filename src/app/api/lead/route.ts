@@ -4,6 +4,9 @@ const N8N_WEBHOOK_URL =
   process.env.N8N_WEBHOOK_URL ||
   "https://n8n.srv1625508.hstgr.cloud/webhook/979a4b97-a515-4ee0-96e3-5d0ddb475e99";
 
+const N8N_BASIC_AUTH_USER = process.env.N8N_BASIC_AUTH_USER || "";
+const N8N_BASIC_AUTH_PASS = process.env.N8N_BASIC_AUTH_PASS || "";
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -30,29 +33,33 @@ export async function POST(request: Request) {
       "Content-Type": "application/json",
     };
 
-    if (process.env.N8N_WEBHOOK_AUTH_TOKEN) {
+    // Support Basic Auth if credentials are provided in env
+    if (N8N_BASIC_AUTH_USER || N8N_BASIC_AUTH_PASS) {
+      const basicAuth = Buffer.from(
+        `${N8N_BASIC_AUTH_USER}:${N8N_BASIC_AUTH_PASS}`
+      ).toString("base64");
+      headers["Authorization"] = `Basic ${basicAuth}`;
+    } else if (process.env.N8N_WEBHOOK_AUTH_TOKEN) {
       headers["Authorization"] = process.env.N8N_WEBHOOK_AUTH_TOKEN;
     }
 
-    try {
-      const webhookRes = await fetch(N8N_WEBHOOK_URL, {
-        method: "POST",
-        headers,
-        body: JSON.stringify(payload),
-      });
+    const webhookRes = await fetch(N8N_WEBHOOK_URL, {
+      method: "POST",
+      headers,
+      body: JSON.stringify(payload),
+    });
 
-      if (!webhookRes.ok) {
-        const errText = await webhookRes.text().catch(() => "");
-        console.warn(
-          `n8n webhook returned status ${webhookRes.status}:`,
-          errText
-        );
-      }
-    } catch (webhookErr) {
-      console.error("Failed to forward lead to n8n webhook:", webhookErr);
-    }
+    const resText = await webhookRes.text().catch(() => "");
 
-    return NextResponse.json({ success: true, message: "Lead submitted successfully" });
+    console.log(
+      `[Lead Webhook] Dispatched to n8n. Status: ${webhookRes.status}, Body: ${resText}`
+    );
+
+    return NextResponse.json({
+      success: webhookRes.ok,
+      status: webhookRes.status,
+      message: resText,
+    });
   } catch (error) {
     console.error("Lead API route error:", error);
     return NextResponse.json(

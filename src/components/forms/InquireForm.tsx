@@ -152,12 +152,14 @@ export function InquireForm() {
       if (!res.ok) {
         console.warn("Lead route warning:", res.status);
       }
-      setIsSubmitted(true);
     } catch (err) {
       console.error("Submission error:", err);
-      setIsSubmitted(true);
     } finally {
       setIsSubmitting(false);
+      // Redirect to thank-you page
+      if (typeof window !== "undefined") {
+        window.location.href = "/thank-you";
+      }
     }
   };
 
