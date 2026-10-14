@@ -4331,6 +4331,105 @@ body {
   .footer-legal-link {
     font-size: 0.8rem;
   }
+
+  /* 10. Subpages & Legal Pages (Prices, Payment Plan, Privacy, Terms, Disclaimer, Thank-You) */
+  .price-intro-section {
+    padding: 85px 0 30px;
+  }
+  .price-intro-title {
+    font-size: clamp(1.5rem, 5.5vw, 2.1rem);
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+  }
+  .price-intro-paragraph {
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+  .subpage-body {
+    padding: 30px 0 50px;
+  }
+  .subpage-card {
+    padding: 24px 16px;
+    border-radius: 8px;
+  }
+  .legal-heading-2 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+  .legal-text,
+  .legal-list {
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+  .legal-list {
+    padding-left: 18px;
+  }
+
+  /* Prices Page Specifics */
+  .price-chart-section {
+    padding: 36px 0 60px;
+  }
+  .price-chart-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .price-chart-title {
+    font-size: clamp(1.4rem, 5vw, 1.9rem);
+  }
+  .price-chart-header-desc {
+    font-size: 0.86rem;
+    line-height: 1.55;
+  }
+  .price-chart-card {
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .price-chart-table-wrap {
+    -webkit-overflow-scrolling: touch;
+    box-shadow: inset -10px 0 10px -10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Payment Plan Page Specifics */
+  .payment-plan-section {
+    padding: 40px 0 60px;
+  }
+  .plan-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .plan-main-title {
+    font-size: clamp(1.4rem, 5vw, 1.95rem);
+    line-height: 1.25;
+  }
+  .plan-header-desc {
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+  .plan-selector-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+  }
+  .plan-select-dropdown-wrap {
+    width: 100%;
+  }
+  .plan-select-dropdown {
+    width: 100%;
+    font-size: 0.84rem;
+    padding: 11px 36px 11px 14px;
+  }
+  .plan-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .plan-milestone-card {
+    padding: 20px 16px;
+  }
 }
 
 
