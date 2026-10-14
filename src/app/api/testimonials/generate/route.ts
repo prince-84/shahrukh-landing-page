@@ -45,7 +45,7 @@ Return ONLY valid JSON (no markdown formatting, no code block backticks) matchin
         "X-Title": "Shahrukhz Residences by Danube",
       },
       body: JSON.stringify({
-        model: "qwen/qwen3.8-27b",
+        model: process.env.OPENROUTER_MODEL || "qwen/qwen3.8-27b:free",
         messages: [
           {
             role: "user",
@@ -53,7 +53,7 @@ Return ONLY valid JSON (no markdown formatting, no code block backticks) matchin
           },
         ],
         temperature: 0.75,
-        max_tokens: 800,
+        max_tokens: 1500,
       }),
     });
 
@@ -67,6 +67,7 @@ Return ONLY valid JSON (no markdown formatting, no code block backticks) matchin
 
     const json = await res.json();
     let content = json?.choices?.[0]?.message?.content || "";
+    content = content.replace(/<think>[\s\S]*?<\/think>/gi, "");
     content = content.replace(/```json/gi, "").replace(/```/g, "").trim();
 
     const parsed = JSON.parse(content);

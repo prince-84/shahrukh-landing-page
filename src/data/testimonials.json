@@ -1,5 +1,38 @@
 [
   {
+    "id": "ai-1791965556656-0",
+    "name": "Aisha Al Mansoori",
+    "location": "Abu Dhabi, UAE",
+    "rating": 5,
+    "date": "2026-10-14",
+    "buyerType": "Homebuyer",
+    "verified": true,
+    "title": "Waterfront living with a rare sense of calm",
+    "comment": "I registered for Shahrukhz Residences by Danube because the Dubai Maritime City location felt effortless, with Port Rashid boat station nearby and easy access to Downtown Dubai. The Gauri Khan interiors and fully furnished finish made it clear this is a home, not just an investment. The 30/70 payment plan and Q4 2029 completion gave us confidence to move forward at AED 1.65M."
+  },
+  {
+    "id": "ai-1791965556656-1",
+    "name": "James Whitfield",
+    "location": "London, United Kingdom",
+    "rating": 5,
+    "date": "2026-10-14",
+    "buyerType": "Investor",
+    "verified": true,
+    "title": "A strong yield story with real lifestyle appeal",
+    "comment": "As a UK investor, I was drawn to the 30/70 payment plan, the AED 1.65M entry, and the Q4 2029 delivery timeline. The resort package is impressive, especially the Infinity 33 sky pool, King's Club observatory deck, private beach lagoon, and Longevity wellness spa. I expect strong rental demand from tenants who value waterfront Dubai living."
+  },
+  {
+    "id": "ai-1791965556656-2",
+    "name": "Elena Rossi",
+    "location": "Milan, Italy",
+    "rating": 4.8,
+    "date": "2026-10-14",
+    "buyerType": "End-User",
+    "verified": true,
+    "title": "A polished coastal address for family life",
+    "comment": "We chose Shahrukhz Residences by Danube for the rare mix of coastal Dubai Maritime City living and full Gauri Khan designed interiors. The over 40 amenities, from the private beach lagoon to the wellness spa, make it feel like a resort we can actually use daily. The closeness to Port Rashid boat station and Downtown Dubai works well for our busy schedule."
+  },
+  {
     "id": "user-1791964873233",
     "name": "Ali Raza",
     "location": "Karachi, Pakistan",
