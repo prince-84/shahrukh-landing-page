@@ -11,12 +11,18 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
+    const rawSubSource = body.sub_source;
+    const subSource =
+      !rawSubSource || rawSubSource === "Organic"
+        ? "shahrukhz-residence"
+        : rawSubSource;
+
     const payload = {
       name: body.name || "",
       phone: body.phone || "",
       email: body.email || "",
-      source: body.source || "",
-      sub_source: body.sub_source || "",
+      source: body.source || "Website",
+      sub_source: subSource,
       utm_campaign: body.utm_campaign || "",
       campaign_url: body.campaign_url || "",
       project: body.project || "Shahrukhz Residences by Danube",
@@ -30,6 +36,7 @@ export async function POST(request: Request) {
     };
 
     const headers: Record<string, string> = {
+      "Authorization": "fsa_n8n_secret_token_2026_x99a",
       "Content-Type": "application/json",
     };
 

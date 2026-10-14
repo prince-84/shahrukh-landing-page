@@ -105,11 +105,11 @@ export function InquireForm() {
             source = "Referral";
           }
         } else {
-          source = "Website Direct";
+          source = "Website";
         }
       }
 
-      const subSource = utmMedium || "Organic";
+      const subSource = utmMedium || "shahrukhz-residence";
 
       setTracking({
         source,
@@ -130,8 +130,8 @@ export function InquireForm() {
       name: formData.name.trim(),
       phone: phone.trim(),
       email: formData.email.trim(),
-      source: tracking.source || "Website Direct",
-      sub_source: tracking.sub_source || "Organic",
+      source: tracking.source || "Website",
+      sub_source: tracking.sub_source || "shahrukhz-residence",
       utm_campaign: tracking.utm_campaign || "",
       campaign_url: tracking.campaign_url || (typeof window !== "undefined" ? window.location.href : ""),
       project: "Shahrukhz Residences by Danube",
