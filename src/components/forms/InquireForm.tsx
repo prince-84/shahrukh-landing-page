@@ -251,7 +251,6 @@ export function InquireForm() {
         <input
           type="checkbox"
           name="terms"
-          defaultChecked
           className="connect-checkbox"
         />
         <span>
