@@ -3789,3 +3789,548 @@ img {
   }
 }
 
+/* ==========================================================================
+   COMPREHENSIVE MOBILE RESPONSIVE ENHANCEMENTS
+   ========================================================================== */
+
+/* Prevent accidental horizontal page overflow on mobile devices */
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* 1. MOBILE HAMBURGER BUTTON */
+.navbar-hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 26px;
+  height: 19px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1010;
+}
+
+.hamburger-bar {
+  width: 100%;
+  height: 2.2px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+.navbar-hamburger-btn.active .bar-1 {
+  transform: translateY(8.4px) rotate(45deg);
+}
+
+.navbar-hamburger-btn.active .bar-2 {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.navbar-hamburger-btn.active .bar-3 {
+  transform: translateY(-8.4px) rotate(-45deg);
+}
+
+/* 2. MOBILE MENU BACKDROP */
+.mobile-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 16, 26, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 10001;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobile-menu-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 3. MOBILE SLIDE-OUT DRAWER */
+.danube-mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 86vw;
+  max-width: 340px;
+  background: linear-gradient(180deg, #002230 0%, #001822 100%);
+  z-index: 10002;
+  box-shadow: -8px 0 36px rgba(0, 0, 0, 0.55);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+  padding: 22px 18px 30px;
+}
+
+.danube-mobile-drawer.open {
+  transform: translateX(0);
+}
+
+.mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 18px;
+}
+
+.mobile-drawer-logo .navbar-brand-logo-img {
+  height: 42px;
+  width: auto;
+  max-width: 170px;
+}
+
+.mobile-drawer-close-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.mobile-drawer-close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.mobile-nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.mobile-nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 12px;
+  color: #f1f5f9;
+  text-decoration: none;
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  border-radius: 6px;
+  transition: background-color 0.2s, color 0.2s;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.mobile-nav-item:hover,
+.mobile-nav-item:active {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #baa07e;
+}
+
+.mobile-nav-arrow {
+  color: #baa07e;
+  font-size: 0.95rem;
+}
+
+.mobile-drawer-cta {
+  margin-top: auto;
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mobile-drawer-btn-inquire {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #baa07e;
+  color: #ffffff;
+  padding: 13px 18px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(186, 160, 126, 0.35);
+  transition: background 0.2s;
+}
+
+.mobile-drawer-btn-inquire:hover {
+  background-color: #aa8e6d;
+}
+
+.mobile-drawer-btn-whatsapp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--whatsapp-green);
+  color: #ffffff;
+  padding: 12px 18px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  border-radius: 4px;
+  text-decoration: none;
+  letter-spacing: 0.4px;
+  transition: filter 0.2s;
+}
+
+.mobile-drawer-btn-whatsapp:hover {
+  filter: brightness(1.08);
+}
+
+/* ==========================================================================
+   BREAKPOINTS: TABLET & MOBILE VIEWPORTS
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .danube-nav-menu {
+    display: none !important;
+  }
+  .navbar-hamburger-btn {
+    display: flex;
+  }
+  .navbar-actions {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Maritime City Connectivity: 2-column balanced grid */
+  .connectivity-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .connectivity-cell {
+    border-right: none !important;
+    border-bottom: 1px solid #e5e7eb !important;
+    padding: 18px 12px !important;
+  }
+  .connectivity-cell:nth-child(odd) {
+    border-right: 1px solid #e5e7eb !important;
+  }
+  .connectivity-cell:nth-last-child(-n + 2) {
+    border-bottom: none !important;
+  }
+
+  /* Specifications table */
+  .specs-table-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .spec-cell {
+    padding: 18px 14px !important;
+    gap: 12px !important;
+    border-right: none !important;
+    border-bottom: 1px solid #e5e7eb !important;
+  }
+  .spec-cell:last-child {
+    border-bottom: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  /* 1. Navbar */
+  .danube-navbar {
+    height: 62px;
+  }
+  .navbar-container {
+    padding: 0 16px;
+  }
+  .navbar-brand-logo-img {
+    height: 38px;
+    max-width: 175px;
+  }
+  .btn-contact {
+    padding: 7px 10px;
+    font-size: 0.72rem;
+  }
+  .btn-contact-text {
+    display: none; /* Shows the telephone icon cleanly without taking valuable space */
+  }
+
+  /* 2. Danube Showcase */
+  .danube-showcase-section {
+    padding: 48px 0 54px;
+  }
+  .showcase-container {
+    padding: 0 16px;
+  }
+  .showcase-main-title {
+    font-size: clamp(1.45rem, 5.8vw, 1.95rem);
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+  }
+  .showcase-italic-tagline {
+    font-size: 0.92rem;
+    margin-bottom: 12px;
+  }
+  .showcase-description {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    margin-bottom: 24px;
+  }
+  .btn-virtual-tour {
+    padding: 12px 28px;
+    font-size: 0.78rem;
+    letter-spacing: 1.2px;
+    margin-bottom: 36px;
+  }
+
+  /* 3. Maritime City Connectivity */
+  .maritime-connectivity-section {
+    padding: 38px 0 42px;
+  }
+  .maritime-eyebrow {
+    font-size: 0.74rem;
+    letter-spacing: 2px;
+  }
+  .maritime-title {
+    font-size: clamp(1.4rem, 4.5vw, 1.85rem);
+    letter-spacing: 2px;
+    margin-bottom: 22px;
+  }
+  .connectivity-text {
+    font-size: 0.68rem;
+    line-height: 1.45;
+  }
+
+  /* 4. Tabbed Image Gallery */
+  .gallery-section {
+    padding: 50px 0 60px;
+  }
+  .gallery-container {
+    padding: 0 14px;
+  }
+  .gallery-title {
+    font-size: clamp(1.35rem, 4.8vw, 1.8rem);
+    letter-spacing: 1.5px;
+  }
+  .gallery-subtitle {
+    font-size: 0.88rem;
+    margin-bottom: 20px;
+  }
+  .gallery-tabs-nav {
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+  .gallery-tab-btn {
+    padding: 8px 14px;
+    font-size: 0.72rem;
+    letter-spacing: 0.8px;
+  }
+  .gallery-image-viewport {
+    aspect-ratio: 4 / 3;
+    min-height: 240px;
+    border-radius: 12px;
+  }
+  .gallery-corner-badge {
+    top: 12px;
+    left: 12px;
+    padding: 6px 12px;
+    font-size: 0.68rem;
+    letter-spacing: 1px;
+  }
+  .gallery-caption-overlay {
+    padding: 24px 14px 14px;
+  }
+  .gallery-caption-title {
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+  .gallery-caption-desc {
+    font-size: 0.76rem;
+    line-height: 1.4;
+  }
+  .gallery-counter {
+    font-size: 0.85rem;
+  }
+  .gallery-thumbs-row {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 6px;
+    margin-top: 12px;
+  }
+  .thumb-img-wrap {
+    border-radius: 6px;
+  }
+  .thumb-title {
+    display: none; /* Keeps 4 thumbnails compact in 1 clean row */
+  }
+
+  /* 5. Amenities Slider */
+  .amenities-banner-section {
+    padding-top: 44px;
+  }
+  .amenities-main-title {
+    font-size: 1.5rem;
+    letter-spacing: 0.18em;
+    margin-bottom: 24px;
+  }
+  .amenities-panoramic-wrapper {
+    height: auto !important;
+    aspect-ratio: 16 / 11;
+    min-height: 230px !important;
+  }
+  .amenity-badge-tag {
+    top: 12px;
+    left: 12px;
+    padding: 5px 12px;
+    font-size: 0.68rem;
+    letter-spacing: 1px;
+  }
+  .amenity-caption-bar {
+    padding: 24px 14px 12px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
+  }
+  .amenity-caption-heading {
+    font-size: 1rem !important;
+    margin-bottom: 2px !important;
+  }
+  .amenity-caption-sub {
+    font-size: 0.75rem !important;
+    line-height: 1.4 !important;
+  }
+  .amenity-slide-number {
+    font-size: 0.8rem !important;
+    align-self: flex-end !important;
+  }
+  .amenity-nav-btn {
+    width: 36px !important;
+    height: 36px !important;
+  }
+  .amenity-nav-btn.btn-prev {
+    left: 8px !important;
+  }
+  .amenity-nav-btn.btn-next {
+    right: 8px !important;
+  }
+  .amenities-cta-container {
+    padding: 16px 14px 36px;
+    gap: 16px;
+  }
+  .btn-view-all-amenities {
+    width: 100% !important;
+    max-width: 300px !important;
+    padding: 13px 20px !important;
+    font-size: 0.82rem !important;
+  }
+
+  /* 6. Media Gallery */
+  .media-gallery-section {
+    padding: 48px 0 44px;
+  }
+  .media-gallery-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+  }
+  .media-gallery-main-title {
+    font-size: clamp(1.4rem, 5vw, 1.9rem);
+    letter-spacing: 0.16em;
+  }
+
+  /* 7. FAQ Section */
+  .faq-section-modern {
+    padding: 50px 0;
+  }
+  .faq-header-box {
+    margin-bottom: 28px;
+  }
+  .faq-eyebrow-text {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+  }
+  .faq-main-title {
+    font-size: clamp(1.4rem, 5vw, 1.9rem);
+    letter-spacing: 0.16em;
+  }
+  .faq-summary-modern {
+    padding: 14px 14px;
+    gap: 8px;
+  }
+  .faq-question-text {
+    font-size: 0.86rem;
+  }
+  .faq-body-modern {
+    padding: 0 14px 14px;
+  }
+  .faq-answer-text {
+    font-size: 0.82rem;
+  }
+
+  /* 8. Connect Form */
+  .connect-section {
+    padding: 50px 0;
+  }
+  .connect-title {
+    font-size: 1.65rem;
+    line-height: 1.35;
+  }
+  .connect-desc {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .connect-form-card {
+    padding: 22px 16px;
+    border-radius: 10px;
+  }
+  .connect-input,
+  .connect-intl-phone-container .react-international-phone-input {
+    height: 46px;
+    font-size: 0.86rem;
+  }
+  .connect-intl-phone-container .react-international-phone-country-selector-dropdown {
+    max-width: min(300px, 86vw) !important;
+  }
+  .btn-connect-submit {
+    padding: 13px;
+    font-size: 0.86rem;
+  }
+
+  /* 9. Footer */
+  .danube-footer {
+    padding: 44px 0 24px;
+  }
+  .footer-brand-logo-img {
+    height: 60px;
+    max-width: 220px;
+  }
+  .footer-tagline {
+    font-size: 0.76rem;
+  }
+  .footer-disclaimer-box {
+    padding: 14px 16px;
+    margin-bottom: 20px;
+  }
+  .footer-disclaimer-text {
+    font-size: 0.72rem;
+    line-height: 1.6;
+  }
+  .footer-legal-nav {
+    gap: 8px 14px;
+  }
+  .footer-nav-separator {
+    display: none; /* Hide pipe separators on mobile for clean multi-line wrapping */
+  }
+  .footer-legal-link {
+    font-size: 0.8rem;
+  }
+}
+
+
