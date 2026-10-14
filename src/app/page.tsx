@@ -11,6 +11,7 @@ import { VideoSeparator } from "@/components/video/VideoSeparator";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/footer/Footer";
 import { InquireForm } from "@/components/forms/InquireForm";
+import { TestimonialsSection } from "@/components/testimonials/TestimonialsSection";
 
 export const metadata: Metadata = {
   title: "Shahrukhz Residences by Danube Waterfront Apartment in Dubai",
@@ -446,6 +447,9 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* SMART TESTIMONIALS & REVIEWS SECTION */}
+        <TestimonialsSection />
       </main>
 
       {/* FOOTER */}

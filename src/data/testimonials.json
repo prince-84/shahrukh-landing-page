@@ -1,0 +1,57 @@
+[
+  {
+    "id": "user-1791964873233",
+    "name": "Ali Raza",
+    "location": "Karachi, Pakistan",
+    "rating": 5,
+    "date": "2026-10-14",
+    "buyerType": "Investor",
+    "verified": true,
+    "title": "Superb Project",
+    "comment": "The waterfront location in Maritime City combined with Danube 30/70 payment plan makes this an unmatched opportunity."
+  },
+  {
+    "id": "rev-1",
+    "name": "Tariq Al-Hashemi",
+    "location": "Abu Dhabi, UAE",
+    "rating": 5,
+    "date": "2026-10-10",
+    "buyerType": "Investor",
+    "verified": true,
+    "title": "Prime waterfront location & unbeatable Danube payment plan",
+    "comment": "Booked a 2-bedroom unit with panoramic ocean view. Dubai Maritime City is developing rapidly, and having a direct waterfront address with Danube's 30/70 structure makes the ROI projection very attractive before the 2029 handover."
+  },
+  {
+    "id": "rev-2",
+    "name": "Marcus & Sophie Vance",
+    "location": "London, United Kingdom",
+    "rating": 5,
+    "date": "2026-10-06",
+    "buyerType": "End-User",
+    "verified": true,
+    "title": "Exceptional interiors designed by Gauri Khan",
+    "comment": "We visited the experience centre during our trip to Dubai. The attention to detail, fully furnished handover package, and over 40 resort amenities including the Infinity 33 sky pool convinced us immediately. Truly a landmark residence."
+  },
+  {
+    "id": "rev-3",
+    "name": "Rajesh Singhania",
+    "location": "Mumbai, India",
+    "rating": 5,
+    "date": "2026-09-28",
+    "buyerType": "Investor",
+    "verified": true,
+    "title": "Seamless booking and premium Maritime City growth",
+    "comment": "Danube has consistently delivered quality. The strategic connectivity to Port Rashid boat station and Downtown within 10-15 minutes ensures strong future capital appreciation and high rental yields."
+  },
+  {
+    "id": "rev-4",
+    "name": "Ksenia Petrova",
+    "location": "Dubai Marina, UAE",
+    "rating": 5,
+    "date": "2026-09-22",
+    "buyerType": "Homebuyer",
+    "verified": true,
+    "title": "The longevity lounge and private beach lagoon are unmatched",
+    "comment": "Finding a coastal home with cryotherapy, red light spa, and a dedicated podium beach lagoon in Dubai is rare. The floor plans maximize open sea vistas from every balcony."
+  }
+]
