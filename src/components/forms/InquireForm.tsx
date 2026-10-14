@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
 
@@ -24,7 +24,7 @@ export function InquireForm() {
   const [formData, setFormData] = useState({ name: "", email: "" });
   const [phone, setPhone] = useState("");
   const [country, setCountry] = useState("ae");
-  const [hasInteractedWithPhone, setHasInteractedWithPhone] = useState(false);
+  const userHasEditedPhoneRef = useRef(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -37,27 +37,34 @@ export function InquireForm() {
 
   // 1. Auto-detect user country location
   useEffect(() => {
-    let detectedIso = "";
+    const applyDetectedCountry = (iso: string) => {
+      if (!userHasEditedPhoneRef.current && iso) {
+        setCountry(iso);
+        setPhone("");
+      }
+    };
 
-    // Fast heuristic via client timezone
+    // Fast heuristic via client timezone (instant on client mount)
     try {
       const tz = Intl.DateTimeFormat().resolvedOptions().timeZone.toLowerCase();
-      if (tz.includes("karachi")) detectedIso = "pk";
-      else if (tz.includes("dubai") || tz.includes("muscat") || tz.includes("gulf")) detectedIso = "ae";
-      else if (tz.includes("kolkata")) detectedIso = "in";
+      let detectedIso = "";
+      if (tz.includes("karachi") || tz.includes("pakistan") || tz.includes("islamabad") || tz.includes("lahore")) detectedIso = "pk";
+      else if (tz.includes("kolkata") || tz.includes("calcutta") || tz.includes("india")) detectedIso = "in";
+      else if (tz.includes("dubai") || tz.includes("muscat") || tz.includes("gulf") || tz.includes("uae") || tz.includes("abu_dhabi")) detectedIso = "ae";
       else if (tz.includes("riyadh")) detectedIso = "sa";
+      else if (tz.includes("dhaka")) detectedIso = "bd";
       else if (tz.includes("london")) detectedIso = "gb";
       else if (tz.includes("qatar")) detectedIso = "qa";
       else if (tz.includes("kuwait")) detectedIso = "kw";
       else if (tz.includes("bahrain")) detectedIso = "bh";
-      else if (tz.includes("new_york") || tz.includes("los_angeles") || tz.includes("chicago")) detectedIso = "us";
+      else if (tz.includes("new_york") || tz.includes("chicago") || tz.includes("los_angeles") || tz.includes("denver")) detectedIso = "us";
       else if (tz.includes("toronto") || tz.includes("vancouver")) detectedIso = "ca";
       else if (tz.includes("moscow")) detectedIso = "ru";
-    } catch {}
 
-    if (detectedIso && !hasInteractedWithPhone) {
-      setCountry(detectedIso);
-    }
+      if (detectedIso) {
+        applyDetectedCountry(detectedIso);
+      }
+    } catch {}
 
     // High-accuracy Geo IP detection
     const controller = new AbortController();
@@ -65,10 +72,7 @@ export function InquireForm() {
       .then((res) => res.json())
       .then((data) => {
         if (data && data.country && typeof data.country === "string") {
-          const iso = data.country.toLowerCase();
-          if (!hasInteractedWithPhone) {
-            setCountry(iso);
-          }
+          applyDetectedCountry(data.country.toLowerCase());
         }
       })
       .catch(() => {
@@ -76,17 +80,14 @@ export function InquireForm() {
           .then((r) => r.json())
           .then((d) => {
             if (d && d.country_code && typeof d.country_code === "string") {
-              const iso = d.country_code.toLowerCase();
-              if (!hasInteractedWithPhone) {
-                setCountry(iso);
-              }
+              applyDetectedCountry(d.country_code.toLowerCase());
             }
           })
           .catch(() => {});
       });
 
     return () => controller.abort();
-  }, [hasInteractedWithPhone]);
+  }, []);
 
   // 2. Capture URL tracking & campaign parameters
   useEffect(() => {
@@ -226,7 +227,6 @@ export function InquireForm() {
           defaultCountry={country}
           value={phone}
           onChange={(newPhone) => {
-            setHasInteractedWithPhone(true);
             setPhone(newPhone);
           }}
           preferredCountries={["ae", "sa", "qa", "kw", "om", "bh", "pk", "in", "gb", "us", "ru"]}
@@ -236,17 +236,22 @@ export function InquireForm() {
             autoComplete: "tel",
             "aria-label": "Phone Number",
             required: true,
+            onFocus: () => {
+              userHasEditedPhoneRef.current = true;
+            },
+            onKeyDown: () => {
+              userHasEditedPhoneRef.current = true;
+            },
           }}
         />
       </div>
 
-      {/* Terms & Conditions Checkbox */}
+      {/* Terms & Conditions Checkbox (Optional) */}
       <label className="connect-terms-label">
         <input
           type="checkbox"
           name="terms"
           defaultChecked
-          required
           className="connect-checkbox"
         />
         <span>
