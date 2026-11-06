@@ -287,6 +287,19 @@ img {
   letter-spacing: 0.2px;
 }
 
+.showcase-description a {
+  color: var(--primary-gold, #b38749);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.showcase-description a:hover {
+  color: var(--primary-gold-dark, #8c6527);
+  text-decoration: underline;
+}
+
 .btn-virtual-tour {
   display: inline-flex;
   align-items: center;
@@ -410,12 +423,13 @@ img {
 
 .maritime-title {
   font-family: var(--font-heading);
-  font-size: clamp(1.8rem, 3vw, 2.35rem);
+  font-size: clamp(1.4rem, 2.6vw, 2.2rem);
   font-weight: 500;
   color: #c4a47c;
-  letter-spacing: 4px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   margin-bottom: 32px;
+  line-height: 1.35;
 }
 
 .connectivity-grid {
@@ -3177,6 +3191,18 @@ img {
   line-height: 1.75;
   color: #475569;
   margin: 0;
+}
+
+.price-intro-paragraph a {
+  color: var(--primary-gold, #b38749);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.price-intro-paragraph a:hover {
+  color: var(--primary-gold-dark, #8c6527);
 }
 
 /* PRICE CONFIGURATION & WATERFRONT STARTING PRICES CHART */

@@ -1,6 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { FaqJsonLd } from "@/components/seo/FaqJsonLd";
 import { HomePageSchema } from "@/components/seo/HomePageSchema";
@@ -14,9 +15,11 @@ import { InquireForm } from "@/components/forms/InquireForm";
 import { TestimonialsSection } from "@/components/testimonials/TestimonialsSection";
 
 export const metadata: Metadata = {
-  title: "Shahrukhz Residences by Danube Waterfront Apartment in Dubai",
+  title: {
+    absolute: "Shahrukhz Residences by Danube in Dubai Maritime City",
+  },
   description:
-    "Discover Shahrukhz Residences by Danube in Dubai Maritime City, starting at AED 1.65M. Explore studios, apartments and penthouses with a 30/70 payment plan and Q4 2029 completion.",
+    "Shahrukhz Residences by Danube in Dubai Maritime City. Discover apartment prices, floor plans, the 30/70 payment plan and expected handover.",
   alternates: {
     canonical: `${siteConfig.url}/`,
   },
@@ -36,9 +39,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     alternateLocale: "ar_AE",
     url: `${siteConfig.url}/`,
-    title: "Shahrukhz Residences by Danube Waterfront Apartment in Dubai",
+    title: "Shahrukhz Residences by Danube in Dubai Maritime City",
     description:
-      "Discover Shahrukhz Residences by Danube in Dubai Maritime City, starting at AED 1.65M. Explore studios, apartments and penthouses with a 30/70 payment plan and Q4 2029 completion.",
+      "Shahrukhz Residences by Danube in Dubai Maritime City. Discover apartment prices, floor plans, the 30/70 payment plan and expected handover.",
     siteName: siteConfig.name,
     images: [
       {
@@ -51,9 +54,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shahrukhz Residences by Danube Waterfront Apartment in Dubai",
+    title: "Shahrukhz Residences by Danube in Dubai Maritime City",
     description:
-      "Discover Shahrukhz Residences by Danube in Dubai Maritime City, starting at AED 1.65M. Explore studios, apartments and penthouses with a 30/70 payment plan and Q4 2029 completion.",
+      "Shahrukhz Residences by Danube in Dubai Maritime City. Discover apartment prices, floor plans, the 30/70 payment plan and expected handover.",
     site: "@DanubeProperties",
     creator: "@DanubeProperties",
     images: [
@@ -70,39 +73,54 @@ export const metadata: Metadata = {
 
 const faqs = [
   {
-    question: "1. What is Shahrukhz Residences by Danube?",
+    question: "1. What Is the Starting Price of Shahrukhz Residences by Danube?",
     answer:
-      "Shahrukhz Residences by Danube is a luxury residential development in Dubai Maritime City, offering furnished apartments and penthouses with waterfront surroundings and contemporary lifestyle facilities.",
+      "The starting price of Shahrukhz Residences is advertised from AED 1.65 million. Prices may vary depending on the apartment type, floor level, size, and view. Contact the sales team to get the latest price list and available units.",
   },
   {
-    question: "2. Where is Shahrukhz Residences located?",
+    question: "2. What Is the Payment Plan for Shahrukhz Residences?",
     answer:
-      "Shahrukhz Residences is located in Dubai Maritime City, Dubai, UAE. Its waterfront setting offers residents a coastal living environment with access to destinations across the city.",
+      "Shahrukhz Residences offers a flexible 30/70 payment plan. Buyers pay 30% of the property price through scheduled installments, while the remaining 70% is payable at handover. Contact the sales team for the latest installment schedule and payment conditions.",
   },
   {
-    question: "3. What types of residences does Shahrukhz Residences offer?",
+    question: "3. How Can I Book an Apartment in Shahrukhz Residences?",
     answer:
-      "The development features studio, 1-bedroom, 2-bedroom, and 3-bedroom apartments, along with penthouses designed for different lifestyle preferences.",
+      "You can register your interest by submitting an inquiry through the project website. The sales team can share the property brochure, available floor plans, prices, and booking details. You can then select your preferred apartment and proceed according to the developer's booking requirements.",
   },
   {
-    question: "4. Are the residences at Shahrukhz Residences furnished?",
+    question: "4. How Much Is the EOI Amount for Shahrukhz Residences?",
     answer:
-      "The project is marketed as a fully furnished residential development. Buyers should confirm the furniture package, fittings, and inclusions for their selected unit before purchasing.",
+      "The advertised Expression of Interest (EOI) amount is AED 50,000 for studio and one-bedroom apartments. For two-bedroom apartments and larger units, the advertised EOI amount is AED 100,000. Confirm the latest EOI terms and refund conditions before making a payment.",
   },
   {
-    question: "5. What lifestyle amenities are available at Shahrukhz Residences?",
+    question: "5. Does Shahrukhz Residences Offer Sea View Apartments?",
     answer:
-      "The project features more than 40 planned lifestyle amenities, including fitness facilities, swimming and leisure areas, sports facilities, and dedicated relaxation spaces. Buyers should consult the latest official amenities list for complete details.",
+      "Yes, the development promotes waterfront living and panoramic ocean views. However, the actual view depends on the apartment's location, floor, and orientation. Buyers should request unit-specific views and floor plans before selecting their preferred residence.",
   },
   {
-    question: "6. When is Shahrukhz Residences expected to be completed?",
+    question: "6. Is Shahrukhz Residences a Good Property Investment in Dubai?",
     answer:
-      "Shahrukhz Residences is expected to be completed in Q4 2029. The anticipated handover date should be confirmed with Danube Properties, as project timelines may change.",
+      "Shahrukhz Residences may appeal to property investors because of its Dubai Maritime City location, waterfront setting, furnished apartments, and lifestyle amenities. However, rental income and future property value are not guaranteed. Buyers should compare market prices, service charges, and expected rental demand before investing.",
   },
   {
-    question: "7. What makes Shahrukhz Residences different from other Dubai residential developments?",
+    question: "7. Are Luxury Penthouses Available at Shahrukhz Residences?",
     answer:
-      "Shahrukhz Residences combines waterfront living, furnished residences, extensive lifestyle amenities, and distinctive design elements. Buyers can evaluate these features against their preferred location, budget, and lifestyle requirements when comparing properties.",
+      "Yes, Shahrukhz Residences includes exclusive penthouses alongside its studio, one-bedroom, two-bedroom, and three-bedroom apartments. These premium residences are designed for buyers seeking additional space and an elevated lifestyle. Contact the sales team for penthouse layouts, prices, and availability.",
+  },
+  {
+    question: "8. What Makes Dubai Maritime City a Good Location for Property Buyers?",
+    answer:
+      "Dubai Maritime City offers a waterfront setting with access to important destinations across Dubai. Residents can reach Port Rashid, Dubai Cruise Terminal, Jumeirah Beach, Dubai World Trade Centre, and Downtown Dubai within a reasonable driving distance, depending on traffic conditions.",
+  },
+  {
+    question: "9. Can International Buyers Purchase Property in Shahrukhz Residences?",
+    answer:
+      "International buyers interested in Dubai real estate can explore purchasing opportunities at Shahrukhz Residences. Buyers should confirm the applicable ownership rules, required identification documents, payment procedures, and transaction conditions with the developer or an authorized real estate professional.",
+  },
+  {
+    question: "10. How Can I Get the Brochure and Latest Price List for Shahrukhz Residences?",
+    answer:
+      "You can request the official project brochure, apartment floor plans, latest prices, and availability by submitting your details through the Shahrukhz Residences website. The sales team can help you compare available units and understand the payment options before booking.",
   },
 ];
 
@@ -142,16 +160,18 @@ export default function HomePage() {
         {/* SHAHRUKHZ RESIDENCES BY DANUBE SHOWCASE SECTION (EXACT REPLICA) */}
         <section className="danube-showcase-section" id="showcase" aria-labelledby="showcase-title">
           <div className="showcase-container">
-            <h1 id="showcase-title" className="showcase-main-title">
+            <h2 id="showcase-title" className="showcase-main-title">
               SHAHRUKHZ RESIDENCES BY DANUBE
-            </h1>
+            </h2>
 
             <p className="showcase-italic-tagline">
-              An iconic new address in Dubai Maritime City.
+              Luxury Waterfront Residences in Dubai Maritime City
             </p>
 
             <p className="showcase-description">
-              Shahrukhz Residences by Danube offers beautiful homes, stunning ocean views, and more than 40 world-class amenities in one place. Designed for modern waterfront living, this project brings comfort, style, and convenience together for people who want to enjoy life in a special way.
+              Shahrukhz Residences by Danube offers furnished apartments and penthouses in Dubai Maritime City. Explore the latest{" "}
+              <Link href="/prices">Shahrukhz Residences prices</Link> and discover the available{" "}
+              <Link href="/payment-plan">Shahrukhz Residences payment plan</Link> to understand your property investment options.
             </p>
 
             <div>
@@ -265,12 +285,11 @@ export default function HomePage() {
         {/* FULL WIDTH TEASER VIDEO SEPARATOR */}
         <VideoSeparator />
 
-        {/* WHY? MARITIME CITY CONNECTIVITY SECTION (EXACT REPLICA) */}
+        {/* CONNECTIVITY / LOCATION SECTION */}
         <section className="maritime-connectivity-section" id="connectivity" aria-labelledby="maritime-title">
           <div className="container">
-            <div className="maritime-eyebrow">WHY?</div>
             <h2 id="maritime-title" className="maritime-title">
-              MARITIME CITY
+              Shahrukhz Residences Location in Dubai Maritime City
             </h2>
 
             <div className="connectivity-grid" role="region" aria-label="Maritime City Strategic Connectivity">
@@ -432,7 +451,7 @@ export default function HomePage() {
                   <span className="connect-eyebrow-dash">—</span> EOI OPEN NOW
                 </div>
                 <h2 id="connect-heading" className="connect-title">
-                  From AED 1.7M.<br />
+                  From AED 1.65M.<br />
                   <span className="connect-title-gold">EOI and priority allocation are open.</span>
                 </h2>
                 <p className="connect-desc">

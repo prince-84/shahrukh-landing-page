@@ -111,7 +111,7 @@ export function TabbedGallery() {
           <div className="gallery-eyebrow">VISUAL SHOWCASE</div>
           <h2 className="gallery-title">EXPERIENCE SHAHRUKHZ RESIDENCES</h2>
           <p className="gallery-subtitle">
-            Explore the architectural brilliance, grand entryways, and sky-high resort amenities of Danube&apos;s latest masterpiece.
+            Shahrukhz Residences by Danube, featuring distinctive waterfront architecture, furnished residences, panoramic views and planned lifestyle amenities in Dubai Maritime City.
           </p>
 
           {/* Interactive Modern Tabs */}

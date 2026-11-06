@@ -32,11 +32,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Shahrukhz Residences by Danube Waterfront Apartment in Dubai",
-    template: "%s",
+    default: "Shahrukhz Residences by Danube in Dubai Maritime City",
+    template: `%s | ${siteConfig.name}`,
   },
   description:
-    "Discover Shahrukhz Residences by Danube in Dubai Maritime City, starting at AED 1.65M. Explore studios, apartments and penthouses with a 30/70 payment plan and Q4 2029 completion.",
+    "Shahrukhz Residences by Danube in Dubai Maritime City. Discover apartment prices, floor plans, the 30/70 payment plan and expected handover.",
   keywords: [
     ...siteConfig.keywords,
     "Shahrukhz Residences prices",
@@ -75,9 +75,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     alternateLocale: "ar_AE",
     url: siteConfig.url,
-    title: "Shahrukhz Residences by Danube Waterfront Apartment in Dubai",
+    title: "Shahrukhz Residences by Danube in Dubai Maritime City",
     description:
-      "Discover Shahrukhz Residences by Danube in Dubai Maritime City, starting at AED 1.65M. Explore studios, apartments and penthouses with a 30/70 payment plan and Q4 2029 completion.",
+      "Shahrukhz Residences by Danube in Dubai Maritime City. Discover apartment prices, floor plans, the 30/70 payment plan and expected handover.",
     siteName: siteConfig.name,
     images: [
       {
@@ -91,9 +91,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shahrukhz Residences by Danube Waterfront Apartment in Dubai",
+    title: "Shahrukhz Residences by Danube in Dubai Maritime City",
     description:
-      "Discover Shahrukhz Residences by Danube in Dubai Maritime City, starting at AED 1.65M. Explore studios, apartments and penthouses with a 30/70 payment plan and Q4 2029 completion.",
+      "Shahrukhz Residences by Danube in Dubai Maritime City. Discover apartment prices, floor plans, the 30/70 payment plan and expected handover.",
     site: "@DanubeProperties",
     creator: "@DanubeProperties",
     images: [

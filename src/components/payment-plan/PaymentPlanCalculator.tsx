@@ -9,7 +9,7 @@ interface UnitPlan {
 }
 
 const unitOptions: UnitPlan[] = [
-  { id: "studio-skyline", name: "Studio · Skyline Sea View — from AED 1.7M", price: 1700000 },
+  { id: "studio-skyline", name: "Studio · Skyline Sea View — from AED 1.65M", price: 1650000 },
   { id: "flex-studio-skyline", name: "Flex Studio · Skyline Sea View — from AED 1.85M", price: 1850000 },
   { id: "flex-studio-panoramic", name: "Flex Studio · Panoramic Sea View — from AED 2.0M", price: 2000000 },
   { id: "1bhk-skyline", name: "1 BHK · Skyline Sea View — from AED 2.3M", price: 2300000 },

@@ -1,14 +1,17 @@
 import React from "react";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/footer/Footer";
 import { FaqJsonLd } from "@/components/seo/FaqJsonLd";
 
 export const metadata: Metadata = {
-  title: "Shahrukhz Residences Prices in Dubai | Danube Properties",
+  title: {
+    absolute: "Shahrukhz Residences Prices 2026 | Apartment Price List",
+  },
   description:
-    "Explore Shahrukhz Residences prices starting from AED 1.65 million in Dubai Maritime City. Check apartment types and investment opportunities.",
+    "Shahrukhz Residences prices from AED 1.65M. Compare studio, 1, 2 and 3-bedroom apartments, sea views, and payment plans in Dubai.",
   alternates: {
     canonical: `${siteConfig.url}/prices`,
   },
@@ -28,9 +31,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     alternateLocale: "ar_AE",
     url: `${siteConfig.url}/prices`,
-    title: "Shahrukhz Residences Prices in Dubai | Danube Properties",
+    title: "Shahrukhz Residences Prices 2026 | Apartment Price List",
     description:
-      "Explore Shahrukhz Residences prices starting from AED 1.65 million in Dubai Maritime City. Check apartment types and investment opportunities.",
+      "Shahrukhz Residences prices from AED 1.65M. Compare studio, 1, 2 and 3-bedroom apartments, sea views, and payment plans in Dubai.",
     siteName: siteConfig.name,
     images: [
       {
@@ -43,9 +46,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shahrukhz Residences Prices in Dubai | Danube Properties",
+    title: "Shahrukhz Residences Prices 2026 | Apartment Price List",
     description:
-      "Explore Shahrukhz Residences prices starting from AED 1.65 million in Dubai Maritime City. Check apartment types and investment opportunities.",
+      "Shahrukhz Residences prices from AED 1.65M. Compare studio, 1, 2 and 3-bedroom apartments, sea views, and payment plans in Dubai.",
     site: "@DanubeProperties",
     creator: "@DanubeProperties",
     images: [
@@ -65,7 +68,7 @@ const priceData = [
     category: "STUDIOS",
     eoi: "EOI AED 50,000",
     units: [
-      { type: "Studio", view: "Skyline Sea View", startingPrice: "AED 1.7M", avgPrice: "AED 1.85M" },
+      { type: "Studio", view: "Skyline Sea View", startingPrice: "AED 1.65M", avgPrice: "AED 1.85M" },
       { type: "Flex Studio", view: "Skyline Sea View", startingPrice: "AED 1.85M", avgPrice: "AED 2M" },
       { type: "Flex Studio", view: "Panoramic Sea View", startingPrice: "AED 2M", avgPrice: "AED 2.1M" },
     ],
@@ -107,39 +110,54 @@ const priceData = [
 
 const faqs = [
   {
-    question: "1. What is the starting price of Shahrukhz Residences by Danube?",
+    question: "1. What Is the Price of a Studio Apartment in Shahrukhz Residences?",
     answer:
-      "The advertised starting price of Shahrukhz Residences is AED 1.65 million. Actual prices depend on the selected unit, size, configuration, and current availability.",
+      "Studio apartments at Shahrukhz Residences start from AED 1.65 million for skyline sea-view units. Flex studios start from AED 1.85 million, while panoramic sea-view options start from AED 2 million. Prices depend on the selected unit and availability.",
   },
   {
-    question: "2. How much do apartments at Shahrukhz Residences cost?",
+    question: "2. How Much Does a 1-Bedroom Apartment Cost in Shahrukhz Residences?",
     answer:
-      "Apartment prices vary according to the property type, floor area, layout, and unit availability. Contact the sales team for an updated price list covering the available residences.",
+      "One-bedroom apartments at Shahrukhz Residences start from AED 2.3 million. Buyers can also explore panoramic sea-view and flexible apartment configurations, with prices reaching AED 3.4 million for selected layouts. Contact the sales team for current availability.",
   },
   {
-    question: "3. Are studio apartments available at Shahrukhz Residences, and what do they cost?",
+    question: "3. What Is the Price of a 2-Bedroom Apartment in Shahrukhz Residences?",
     answer:
-      "Studio apartments are among the property types offered at Shahrukhz Residences. Their current prices depend on unit availability and specifications. Request an updated quotation to compare available studios.",
+      "Two-bedroom apartments at Shahrukhz Residences start from AED 4.25 million for premium panoramic sea-view residences. King's two-bedroom apartments start from AED 4.95 million. Final prices depend on the apartment layout, floor, and availability.",
   },
   {
-    question: "4. What factors affect property prices at Shahrukhz Residences?",
+    question: "4. How Much Does a 3-Bedroom Apartment Cost at Shahrukhz Residences?",
     answer:
-      "Prices can vary based on apartment size, floor level, views, layout, unit availability, and the applicable purchase terms. Buyers should compare the full unit specifications before making a decision.",
+      "Three-bedroom apartments at Shahrukhz Residences start from AED 6.5 million. These spacious residences are designed for families seeking premium interiors, panoramic sea views, and a luxury waterfront lifestyle in Dubai Maritime City.",
   },
   {
-    question: "5. Are penthouses at Shahrukhz Residences priced differently from apartments?",
+    question: "5. Are Sea View Apartments More Expensive at Shahrukhz Residences?",
     answer:
-      "Yes. Penthouses may have different prices because of their size, layout, positioning, and exclusive features. Contact the sales team for current penthouse availability and individual quotations.",
+      "Yes, apartment prices can vary depending on the selected view and configuration. Shahrukhz Residences offers skyline and panoramic sea-view options. Panoramic sea-view apartments may have higher starting prices depending on their layout and positioning.",
   },
   {
-    question: "6. Are there additional costs when purchasing a property at Shahrukhz Residences?",
+    question: "6. What Is the Average Price of Apartments in Shahrukhz Residences?",
     answer:
-      "Buyers should budget for applicable Dubai Land Department registration fees, administrative charges, service charges, and any other costs associated with the purchase. Confirm the applicable amounts with the developer or a qualified property professional.",
+      "The average prices published by the developer vary by apartment type. Studio apartments have an average price of approximately AED 1.85 million, while one-bedroom units average AED 2.5 million for standard skyline-view configurations. Request the latest price list for a detailed comparison.",
   },
   {
-    question: "7. How can I get the latest Shahrukhz Residences price list?",
+    question: "7. Are There Any Hidden Charges When Buying Shahrukhz Residences Apartments?",
     answer:
-      "Contact Danube Properties or an authorized property agent to request the latest price list, available unit details, and a personalized quotation. Confirm all prices and applicable charges before booking.",
+      "In addition to the apartment price, buyers should consider Dubai Land Department registration fees, administrative charges, and applicable service charges. The exact costs depend on the transaction and applicable regulations. Always request a complete cost breakdown before booking.",
+  },
+  {
+    question: "8. Can I Buy a Shahrukhz Residences Apartment with a Flexible Payment Plan?",
+    answer:
+      "Yes, Shahrukhz Residences advertises a 30/70 payment plan. Buyers pay 30% through scheduled installments, with the remaining 70% due at handover. This structure allows purchasers to plan their investment according to the developer's payment schedule.",
+  },
+  {
+    question: "9. What Is the Price Difference Between Skyline and Panoramic Sea View Apartments?",
+    answer:
+      "The price difference depends on the apartment category and configuration. For example, standard one-bedroom skyline-view apartments start from AED 2.3 million, while panoramic sea-view options start from AED 2.6 million. Buyers should compare individual units to identify the most suitable option.",
+  },
+  {
+    question: "10. How Can I Get the Best Available Price for Shahrukhz Residences?",
+    answer:
+      "To explore the best available options, compare apartment sizes, floor levels, views, and current unit prices. Contact the authorized sales team to receive the latest inventory, available offers, payment details, and a personalized quotation before making a booking.",
   },
 ];
 
@@ -159,14 +177,18 @@ export default function PricesPage() {
             <span>Prices</span>
           </div>
 
-          <h1 className="price-intro-title">Shahrukhz Residences prices</h1>
+          <h1 className="price-intro-title">Shahrukhz Residences Prices in Dubai</h1>
 
           <div className="price-intro-text-block">
             <p className="price-intro-paragraph">
-              Shahrukhz Residences prices start from AED 1.65 million, offering buyers an opportunity to invest in a premium residential development in Dubai Maritime City. Developed by Danube Properties, the project features studios, 1, 2, and 3-bedroom apartments, along with exclusive penthouses. With modern interiors, waterfront surroundings, and a range of lifestyle amenities, Shahrukhz Residences caters to both homebuyers and property investors looking for off-plan properties in Dubai.
+              Shahrukhz Residences prices vary depending on apartment type, size, floor and availability. Located in Dubai Maritime City, this development by Danube Properties offers studios, 1, 2 and 3-bedroom apartments, along with exclusive penthouses.
             </p>
             <p className="price-intro-paragraph">
-              The Shahrukhz Residences prices and payment options make the project worth considering for buyers seeking a property in a coastal Dubai location. The development offers a 30/70 payment plan and is expected to be completed in Q4 2029. Its location provides access to major business districts, leisure destinations, and popular attractions across Dubai. Buyers should confirm the latest prices, available units, and payment terms with Danube Properties before making an investment decision.
+              Explore the available apartment options and starting prices to compare residences according to your requirements. Contact the sales team to confirm the latest prices, available units and applicable purchase terms before booking.
+            </p>
+            <p className="price-intro-paragraph">
+              Explore the{" "}
+              <Link href="/payment-plan">Shahrukhz Residences Payment Plan</Link> to understand the advertised installment structure and payment terms.
             </p>
           </div>
         </div>

@@ -31,7 +31,9 @@ export function HomePageSchema() {
         "@type": "WebPage",
         "@id": `${baseUrl}/#webpage`,
         url: `${baseUrl}/`,
-        name: "Shahrukhz Residences by Danube - Luxury Waterfront Apartments in Dubai Maritime City",
+        name: "Shahrukhz Residences by Danube in Dubai Maritime City",
+        description:
+          "Shahrukhz Residences by Danube in Dubai Maritime City. Discover apartment prices, floor plans, the 30/70 payment plan and expected handover.",
         isPartOf: {
           "@id": `${baseUrl}/#website`,
         },

@@ -4,7 +4,7 @@ export const siteConfig = {
   year: 2026,
   tagline: "Ultra-Luxury Waterfront Living in Dubai Maritime City with 30/70 Payment Plan",
   description:
-    "Discover Shahrukhz Residences by Danube in Dubai Maritime City, starting at AED 1.65M. Explore studios, apartments and penthouses with a 30/70 payment plan and Q4 2029 completion.",
+    "Shahrukhz Residences by Danube in Dubai Maritime City. Discover apartment prices, floor plans, the 30/70 payment plan and expected handover.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://shahrukhz-residence.com",
   ogImage: "/images/logo.jpg",
   developer: {
